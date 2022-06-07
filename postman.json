@@ -1,0 +1,1715 @@
+{
+	"info": {
+		"_postman_id": "05df3e0b-01c2-4b10-a49e-512cc331529d",
+		"name": "Baileys Api Server",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2727970"
+	},
+	"item": [
+		{
+			"name": "Session",
+			"item": [
+				{
+					"name": "Generate Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"token\", pm.response.json().token);\r",
+									"pm.collectionVariables.set(\"session\", pm.response.json().session);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/:session/session/encrypt/:secret",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								":session",
+								"session",
+								"encrypt",
+								":secret"
+							],
+							"variable": [
+								{
+									"key": "session",
+									"value": "syifarahmat.id",
+									"description": "Session name to generate token"
+								},
+								{
+									"key": "secret",
+									"value": "{{secret}}",
+									"description": "Same value as config screetKey"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"webhookUrl\": \"http://127.0.0.1:3000/hook/\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/:session/session/create",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								":session",
+								"session",
+								"create"
+							],
+							"variable": [
+								{
+									"key": "session",
+									"value": "syifarahmat.id",
+									"description": "Session name to create"
+								}
+							]
+						},
+						"description": "Inicializa a sessão"
+					},
+					"response": []
+				},
+				{
+					"name": "Restart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"webhookUrl\": \"http://127.0.0.1:3000/hook/\",\n    \"waitQrCode\": false\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/:session/session/restart",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								":session",
+								"session",
+								"restart"
+							],
+							"variable": [
+								{
+									"key": "session",
+									"value": "syifarahmat.id",
+									"description": "Session name to create"
+								}
+							]
+						},
+						"description": "Inicializa a sessão"
+					},
+					"response": []
+				},
+				{
+					"name": "Startup",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/session/startup/:secret",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"session",
+								"startup",
+								":secret"
+							],
+							"variable": [
+								{
+									"key": "secret",
+									"value": "{{secret}}",
+									"description": "Same value as config screetKey"
+								}
+							]
+						},
+						"description": "Inicializa a sessão"
+					},
+					"response": []
+				},
+				{
+					"name": "Restart All",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/session/restart/:secret",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"session",
+								"restart",
+								":secret"
+							],
+							"variable": [
+								{
+									"key": "secret",
+									"value": "{{secret}}",
+									"description": "Same value as config screetKey"
+								}
+							]
+						},
+						"description": "Inicializa a sessão"
+					},
+					"response": []
+				},
+				{
+					"name": "LogOut",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/:session/session/logOut",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								":session",
+								"session",
+								"logOut"
+							],
+							"variable": [
+								{
+									"key": "session",
+									"value": "{{session}}",
+									"description": "Session name to logout"
+								}
+							]
+						},
+						"description": "Inicializa a sessão"
+					},
+					"response": []
+				},
+				{
+					"name": "Close",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/:session/session/close",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								":session",
+								"session",
+								"close"
+							],
+							"variable": [
+								{
+									"key": "session",
+									"value": "{{session}}",
+									"description": "Session name to logout"
+								}
+							]
+						},
+						"description": "Inicializa a sessão"
+					},
+					"response": []
+				},
+				{
+					"name": "Info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/:session/session/info",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								":session",
+								"session",
+								"info"
+							],
+							"variable": [
+								{
+									"key": "session",
+									"value": "{{session}}",
+									"description": "Session name to get info"
+								}
+							]
+						},
+						"description": "Inicializa a sessão"
+					},
+					"response": []
+				},
+				{
+					"name": "State",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/:session/session/state",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								":session",
+								"session",
+								"state"
+							],
+							"variable": [
+								{
+									"key": "session",
+									"value": "{{session}}",
+									"description": "Session name to get info"
+								}
+							]
+						},
+						"description": "Inicializa a sessão"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Message",
+			"item": [
+				{
+					"name": "Send Text",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "toJid",
+									"value": "6282266331136",
+									"description": "Jid to send message, allow multiple exp.: 6282266331133, 6282266331134",
+									"type": "text"
+								},
+								{
+									"key": "message",
+									"value": "Hai https://syifarahmat.github.io",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/:session/message/sendText",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								":session",
+								"message",
+								"sendText"
+							],
+							"variable": [
+								{
+									"key": "session",
+									"value": "{{session}}",
+									"description": "Session name to send"
+								}
+							]
+						},
+						"description": "Inicializa a sessão"
+					},
+					"response": []
+				},
+				{
+					"name": "Send Text Json",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"toJid\": \"6282266331136\",\n    \"message\": \"Haiiii....\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/:session/message/sendText",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								":session",
+								"message",
+								"sendText"
+							],
+							"variable": [
+								{
+									"key": "session",
+									"value": "{{session}}",
+									"description": "Session name to send"
+								}
+							]
+						},
+						"description": "Inicializa a sessão"
+					},
+					"response": []
+				},
+				{
+					"name": "Send Image",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "toJid",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "caption",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "fileName",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/:session/message/sendImage",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								":session",
+								"message",
+								"sendImage"
+							],
+							"variable": [
+								{
+									"key": "session",
+									"value": "{{session}}",
+									"description": "Session name to send"
+								}
+							]
+						},
+						"description": "Send an image message to WhatsApp User"
+					},
+					"response": []
+				},
+				{
+					"name": "Send Image Json",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"toJid\": \"6282266331136\",\r\n    \"path\": \"F:/picture/Amoorea.png\",\r\n    \"caption\": \"FILE COKKK\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/:session/message/sendImage",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								":session",
+								"message",
+								"sendImage"
+							],
+							"variable": [
+								{
+									"key": "session",
+									"value": "{{session}}",
+									"description": "Session name to send"
+								}
+							]
+						},
+						"description": "Send an image message to WhatsApp User"
+					},
+					"response": []
+				},
+				{
+					"name": "Send Image Url",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"toJid\": \"6282266331136\",\r\n    \"path\": \"https://lh5.googleusercontent.com/p/AF1QipPx5T1UcEt7ENdxPFKoAJvwmOPlRPgaPmzBXXHf=w90-h90-n-k-no\",\r\n    \"caption\": \"FILE COKKK\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/:session/message/sendImage",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								":session",
+								"message",
+								"sendImage"
+							],
+							"variable": [
+								{
+									"key": "session",
+									"value": "{{session}}",
+									"description": "Session name to send"
+								}
+							]
+						},
+						"description": "Send an image message to WhatsApp User"
+					},
+					"response": []
+				},
+				{
+					"name": "Send Video",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "toJid",
+									"value": "6282266331136",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/F:/video/pexels-mikhail-nilov-7815734.mp4"
+								},
+								{
+									"key": "caption",
+									"value": "Ahahaha",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/:session/message/sendVideo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								":session",
+								"message",
+								"sendVideo"
+							],
+							"variable": [
+								{
+									"key": "session",
+									"value": "{{session}}",
+									"description": "Session name to send"
+								}
+							]
+						},
+						"description": "Send an image message to WhatsApp User"
+					},
+					"response": []
+				},
+				{
+					"name": "Send Audio",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"toJid\": \"6282266331136,6282266331137\",\r\n    \"path\": \"https://2u039f-a.akamaihd.net/downloads/ringtones/files/mp3/kgf-2-mass-52653-1-57086.mp3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/:session/message/sendAudio",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								":session",
+								"message",
+								"sendAudio"
+							],
+							"variable": [
+								{
+									"key": "session",
+									"value": "{{session}}",
+									"description": "Session name to send"
+								}
+							]
+						},
+						"description": "Send an image message to WhatsApp User"
+					},
+					"response": []
+				},
+				{
+					"name": "Send Sticker",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "toJid",
+									"value": "6282266331136",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/:session/message/sendSticker",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								":session",
+								"message",
+								"sendSticker"
+							],
+							"variable": [
+								{
+									"key": "session",
+									"value": "{{session}}",
+									"description": "Session name to send"
+								}
+							]
+						},
+						"description": "Send an image message to WhatsApp User"
+					},
+					"response": []
+				},
+				{
+					"name": "Send Sticker Json",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"toJid\": \"6282266331136\",\r\n    \"path\": \"F:/project/Node/baileysserver/session/syifarahmat.id/stickerMessage/3EB03FBD573CE1011C6B.webp\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/:session/message/sendSticker",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								":session",
+								"message",
+								"sendSticker"
+							],
+							"variable": [
+								{
+									"key": "session",
+									"value": "{{session}}",
+									"description": "Session name to send"
+								}
+							]
+						},
+						"description": "Send an image message to WhatsApp User"
+					},
+					"response": []
+				},
+				{
+					"name": "Send Document",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"toJid\": \"6282266331136\",\r\n    \"path\": \"https://2u039f-a.akamaihd.net/downloads/ringtones/files/mp3/kgf-2-mass-52653-1-57086.mp3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/:session/message/sendDocument",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								":session",
+								"message",
+								"sendDocument"
+							],
+							"variable": [
+								{
+									"key": "session",
+									"value": "{{session}}",
+									"description": "Session name to send"
+								}
+							]
+						},
+						"description": "Send an image message to WhatsApp User"
+					},
+					"response": []
+				},
+				{
+					"name": "Send Button",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"toJid\": \"6282266331136\",\r\n    \"message\": \"Haiiii... saya tombol yg harus dipilih https://www.youtube.com/\",\r\n    \"footer\": \"Saya footer\",\r\n    \"buttons\": [\r\n        {\r\n            \"type\": \"replyButton\",\r\n            \"id\": \"tidak\",\r\n            \"title\": \"Tidak Boleh\"\r\n        },\r\n        {\r\n            \"type\": \"urlButton\",\r\n            \"title\": \"Click me (URL)\",\r\n            \"payload\": \"https://google.com\"\r\n        },\r\n        {\r\n            \"type\": \"callButton\",\r\n            \"title\": \"Click to call (CALL)\",\r\n            \"payload\": \"918788889688\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/:session/message/sendButton",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								":session",
+								"message",
+								"sendButton"
+							],
+							"variable": [
+								{
+									"key": "session",
+									"value": "{{session}}",
+									"description": "Session name to send"
+								}
+							]
+						},
+						"description": "Send an image message to WhatsApp User"
+					},
+					"response": []
+				},
+				{
+					"name": "Send Button Media",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"toJid\": \"6282266331136\",\r\n    \"message\": \"Haiiii... saya tombol yg harus dipilih\",\r\n    \"path\": \"https://lh5.googleusercontent.com/p/AF1QipPx5T1UcEt7ENdxPFKoAJvwmOPlRPgaPmzBXXHf=w90-h90-n-k-no\",\r\n    \"type\": \"image\",\r\n    \"footer\": \"Saya footer\",\r\n    \"buttons\": [\r\n        {\r\n            \"type\": \"replyButton\",\r\n            \"title\": \"Tidak\"\r\n        },\r\n        {\r\n            \"type\": \"urlButton\",\r\n            \"title\": \"Click me (URL)\",\r\n            \"payload\": \"https://google.com\"\r\n        },\r\n        {\r\n            \"type\": \"callButton\",\r\n            \"title\": \"Click to call (CALL)\",\r\n            \"payload\": \"918788889688\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/:session/message/sendMediaButton",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								":session",
+								"message",
+								"sendMediaButton"
+							],
+							"variable": [
+								{
+									"key": "session",
+									"value": "{{session}}",
+									"description": "Session name to send"
+								}
+							]
+						},
+						"description": "Send an image message to WhatsApp User"
+					},
+					"response": []
+				},
+				{
+					"name": "Send List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"toJid\": \"6282266331136,6282266331137\",\r\n    \"message\": \"Haiiii... saya tombol yg harus dipilih https://yputube.com\",\r\n    \"title\": \"Pilihan Ganda\",\r\n    \"buttonText\": \"Pilih Saya\",\r\n    \"footer\": \"Saya footer\",\r\n    \"sections\": [\r\n        {\r\n            \"title\": \"title\",\r\n            \"rows\": [\r\n                {\r\n                    \"title\": \"Title Option 1\",\r\n                    \"description\": \"Option Description\",\r\n                    \"rowId\": \"string\"\r\n                }\r\n            ]\r\n        }, \r\n        {\r\n            \"title\": \"title\",\r\n            \"rows\": [\r\n                {\r\n                    \"title\": \"Title Option 2\",\r\n                    \"description\": \"Option Description 2\",\r\n                    \"rowId\": \"string2\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/:session/message/sendList",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								":session",
+								"message",
+								"sendList"
+							],
+							"variable": [
+								{
+									"key": "session",
+									"value": "{{session}}",
+									"description": "Session name to send"
+								}
+							]
+						},
+						"description": "Send an image message to WhatsApp User"
+					},
+					"response": []
+				},
+				{
+					"name": "Send Contact",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "toJid",
+									"value": "6282266331136,6282266331137",
+									"type": "text"
+								},
+								{
+									"key": "fullName",
+									"value": "Hallooow",
+									"type": "text"
+								},
+								{
+									"key": "organization",
+									"value": "Halo Halow",
+									"type": "text"
+								},
+								{
+									"key": "phoneNumber",
+									"value": "6282266331137",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/:session/message/sendContact",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								":session",
+								"message",
+								"sendContact"
+							],
+							"variable": [
+								{
+									"key": "session",
+									"value": "{{session}}",
+									"description": "Session name to send"
+								}
+							]
+						},
+						"description": "Inicializa a sessão"
+					},
+					"response": []
+				},
+				{
+					"name": "Forward",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"toJid\": \"6282266331136\",\r\n    \"message\": {\r\n        \"key\": {\r\n            \"remoteJid\": \"6282266331137@s.whatsapp.net\",\r\n            \"fromMe\": true,\r\n            \"id\": \"BAE52863856526D8\"\r\n        },\r\n        \"message\": {\r\n            \"contactMessage\": {\r\n                \"displayName\": \"Hallooow\",\r\n                \"vcard\": \"BEGIN:VCARD\\nVERSION:3.0\\nFN:Hallooow\\nORG:Halo Halow;\\nTEL;type=CELL;type=VOICE;waid=6282266331137:6282266331137\\n\\nEND:VCARD\"\r\n            }\r\n        },\r\n        \"messageTimestamp\": \"1654318326\",\r\n        \"status\": \"PENDING\"\r\n    },\r\n    \"option\": {\r\n        \"quoted\": {\r\n            \"key\": {\r\n                \"remoteJid\": \"6282266331136@s.whatsapp.net\",\r\n                \"fromMe\": true,\r\n                \"id\": \"BAE57B42986B6FF6\"\r\n            },\r\n            \"message\": {\r\n                \"contactMessage\": {\r\n                    \"displayName\": \"Hallooow\",\r\n                    \"vcard\": \"BEGIN:VCARD\\nVERSION:3.0\\nFN:Hallooow\\nORG:Halo Halow;\\nTEL;type=CELL;type=VOICE;waid=6282266331137:6282266331137\\n\\nEND:VCARD\",\r\n                    \"contextInfo\": {}\r\n                }\r\n            },\r\n            \"messageTimestamp\": \"1654321499\",\r\n            \"status\": \"PENDING\"\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/:session/message/forward",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								":session",
+								"message",
+								"forward"
+							],
+							"variable": [
+								{
+									"key": "session",
+									"value": "{{session}}",
+									"description": "Session name to send"
+								}
+							]
+						},
+						"description": "Send an image message to WhatsApp User"
+					},
+					"response": []
+				},
+				{
+					"name": "Reaction",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"toJid\": \"6282266331136\",\r\n    \"message\": {\r\n        \"key\": {\r\n            \"remoteJid\": \"6282266331137@s.whatsapp.net\",\r\n            \"fromMe\": true,\r\n            \"id\": \"BAE52863856526D8\"\r\n        },\r\n        \"message\": {\r\n            \"contactMessage\": {\r\n                \"displayName\": \"Hallooow\",\r\n                \"vcard\": \"BEGIN:VCARD\\nVERSION:3.0\\nFN:Hallooow\\nORG:Halo Halow;\\nTEL;type=CELL;type=VOICE;waid=6282266331137:6282266331137\\n\\nEND:VCARD\"\r\n            }\r\n        },\r\n        \"messageTimestamp\": \"1654318326\",\r\n        \"status\": \"PENDING\"\r\n    },\r\n    \"emoticon\": \"😂\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/:session/message/reaction",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								":session",
+								"message",
+								"reaction"
+							],
+							"variable": [
+								{
+									"key": "session",
+									"value": "{{session}}",
+									"description": "Session name to send"
+								}
+							]
+						},
+						"description": "Send an image message to WhatsApp User"
+					},
+					"response": []
+				},
+				{
+					"name": "Load Messages",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fromJid\": \"6282266331136\",\r\n    \"limit\": 3,\r\n    \"onlyFromMe\": true,\r\n    \"onlyNotFromMe\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/:session/message/loadMessages",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								":session",
+								"message",
+								"loadMessages"
+							],
+							"variable": [
+								{
+									"key": "session",
+									"value": "{{session}}",
+									"description": "Session name to send"
+								}
+							]
+						},
+						"description": "Send an image message to WhatsApp User"
+					},
+					"response": []
+				},
+				{
+					"name": "Load Message",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fromJid\": \"6282266331\",\r\n    \"id\": \"3EB0B6CF536AD4A0FCD8\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/:session/message/loadMessage",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								":session",
+								"message",
+								"loadMessage"
+							],
+							"variable": [
+								{
+									"key": "session",
+									"value": "{{session}}",
+									"description": "Session name to send"
+								}
+							]
+						},
+						"description": "Send an image message to WhatsApp User"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Chat",
+			"item": [
+				{
+					"name": "Send Presence",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "toJid",
+									"value": "6282266331136",
+									"description": "Jid to send message, allow multiple exp.: 6282266331133, 6282266331134",
+									"type": "text"
+								},
+								{
+									"key": "presence",
+									"value": "available",
+									"description": "Presence is unavailable, available, composing, recording, paused",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/:session/chat/sendPresenceUpdate",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								":session",
+								"chat",
+								"sendPresenceUpdate"
+							],
+							"variable": [
+								{
+									"key": "session",
+									"value": "{{session}}",
+									"description": "Session name to send"
+								}
+							]
+						},
+						"description": "Inicializa a sessão"
+					},
+					"response": []
+				},
+				{
+					"name": "On Whatsapp",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "fromJid",
+									"value": "6282266331136,6282266331137,6282245731213",
+									"description": "Jid to send message, allow multiple exp.: 6282266331133, 6282266331134",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/:session/chat/onWhatsApp",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								":session",
+								"chat",
+								"onWhatsApp"
+							],
+							"variable": [
+								{
+									"key": "session",
+									"value": "{{session}}",
+									"description": "Session name to send"
+								}
+							]
+						},
+						"description": "Inicializa a sessão"
+					},
+					"response": []
+				},
+				{
+					"name": "Profile Picture Url",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "fromJid",
+									"value": "6282266331136",
+									"description": "Jid to send message, allow multiple exp.: 6282266331133, 6282266331134",
+									"type": "text"
+								},
+								{
+									"key": "hd",
+									"value": "true",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/:session/chat/profilePictureUrl",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								":session",
+								"chat",
+								"profilePictureUrl"
+							],
+							"variable": [
+								{
+									"key": "session",
+									"value": "{{session}}",
+									"description": "Session name to send"
+								}
+							]
+						},
+						"description": "Inicializa a sessão"
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch Status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "fromJid",
+									"value": "6282266331137",
+									"description": "Jid to send message, allow multiple exp.: 6282266331133, 6282266331134",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/:session/chat/fetchStatus",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								":session",
+								"chat",
+								"fetchStatus"
+							],
+							"variable": [
+								{
+									"key": "session",
+									"value": "{{session}}",
+									"description": "Session name to send"
+								}
+							]
+						},
+						"description": "Inicializa a sessão"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "tokenBearer",
+			"value": ""
+		},
+		{
+			"key": "session",
+			"value": ""
+		},
+		{
+			"key": "token",
+			"value": ""
+		}
+	]
+}
