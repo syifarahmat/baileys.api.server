@@ -108,8 +108,7 @@
 									"description": "Session name to create"
 								}
 							]
-						},
-						"description": "Inicializa a sessão"
+						}
 					},
 					"response": []
 				},
@@ -149,7 +148,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"webhookUrl\": \"http://127.0.0.1:3000/hook/\",\n    \"waitQrCode\": false\n}"
+							"raw": "{\n    \"webhookUrl\": \"http://127.0.0.1:3000/hook/\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/:session/session/restart",
@@ -168,8 +167,7 @@
 									"description": "Session name to create"
 								}
 							]
-						},
-						"description": "Inicializa a sessão"
+						}
 					},
 					"response": []
 				},
@@ -221,8 +219,7 @@
 									"description": "Same value as config screetKey"
 								}
 							]
-						},
-						"description": "Inicializa a sessão"
+						}
 					},
 					"response": []
 				},
@@ -274,8 +271,7 @@
 									"description": "Same value as config screetKey"
 								}
 							]
-						},
-						"description": "Inicializa a sessão"
+						}
 					},
 					"response": []
 				},
@@ -327,8 +323,7 @@
 									"description": "Session name to logout"
 								}
 							]
-						},
-						"description": "Inicializa a sessão"
+						}
 					},
 					"response": []
 				},
@@ -380,8 +375,7 @@
 									"description": "Session name to logout"
 								}
 							]
-						},
-						"description": "Inicializa a sessão"
+						}
 					},
 					"response": []
 				},
@@ -433,8 +427,7 @@
 									"description": "Session name to get info"
 								}
 							]
-						},
-						"description": "Inicializa a sessão"
+						}
 					},
 					"response": []
 				},
@@ -486,8 +479,7 @@
 									"description": "Session name to get info"
 								}
 							]
-						},
-						"description": "Inicializa a sessão"
+						}
 					},
 					"response": []
 				}
@@ -560,8 +552,7 @@
 									"description": "Session name to send"
 								}
 							]
-						},
-						"description": "Inicializa a sessão"
+						}
 					},
 					"response": []
 				},
@@ -617,8 +608,7 @@
 									"description": "Session name to send"
 								}
 							]
-						},
-						"description": "Inicializa a sessão"
+						}
 					},
 					"response": []
 				},
@@ -679,8 +669,7 @@
 									"description": "Session name to send"
 								}
 							]
-						},
-						"description": "Send an image message to WhatsApp User"
+						}
 					},
 					"response": []
 				},
@@ -725,8 +714,7 @@
 									"description": "Session name to send"
 								}
 							]
-						},
-						"description": "Send an image message to WhatsApp User"
+						}
 					},
 					"response": []
 				},
@@ -771,8 +759,7 @@
 									"description": "Session name to send"
 								}
 							]
-						},
-						"description": "Send an image message to WhatsApp User"
+						}
 					},
 					"response": []
 				},
@@ -828,8 +815,7 @@
 									"description": "Session name to send"
 								}
 							]
-						},
-						"description": "Send an image message to WhatsApp User"
+						}
 					},
 					"response": []
 				},
@@ -874,8 +860,7 @@
 									"description": "Session name to send"
 								}
 							]
-						},
-						"description": "Send an image message to WhatsApp User"
+						}
 					},
 					"response": []
 				},
@@ -926,8 +911,7 @@
 									"description": "Session name to send"
 								}
 							]
-						},
-						"description": "Send an image message to WhatsApp User"
+						}
 					},
 					"response": []
 				},
@@ -972,8 +956,7 @@
 									"description": "Session name to send"
 								}
 							]
-						},
-						"description": "Send an image message to WhatsApp User"
+						}
 					},
 					"response": []
 				},
@@ -1018,8 +1001,7 @@
 									"description": "Session name to send"
 								}
 							]
-						},
-						"description": "Send an image message to WhatsApp User"
+						}
 					},
 					"response": []
 				},
@@ -1064,8 +1046,7 @@
 									"description": "Session name to send"
 								}
 							]
-						},
-						"description": "Send an image message to WhatsApp User"
+						}
 					},
 					"response": []
 				},
@@ -1110,8 +1091,7 @@
 									"description": "Session name to send"
 								}
 							]
-						},
-						"description": "Send an image message to WhatsApp User"
+						}
 					},
 					"response": []
 				},
@@ -1156,8 +1136,7 @@
 									"description": "Session name to send"
 								}
 							]
-						},
-						"description": "Send an image message to WhatsApp User"
+						}
 					},
 					"response": []
 				},
@@ -1234,8 +1213,7 @@
 									"description": "Session name to send"
 								}
 							]
-						},
-						"description": "Inicializa a sessão"
+						}
 					},
 					"response": []
 				},
@@ -1280,8 +1258,7 @@
 									"description": "Session name to send"
 								}
 							]
-						},
-						"description": "Send an image message to WhatsApp User"
+						}
 					},
 					"response": []
 				},
@@ -1326,8 +1303,7 @@
 									"description": "Session name to send"
 								}
 							]
-						},
-						"description": "Send an image message to WhatsApp User"
+						}
 					},
 					"response": []
 				},
@@ -1372,8 +1348,7 @@
 									"description": "Session name to send"
 								}
 							]
-						},
-						"description": "Send an image message to WhatsApp User"
+						}
 					},
 					"response": []
 				},
@@ -1418,8 +1393,7 @@
 									"description": "Session name to send"
 								}
 							]
-						},
-						"description": "Send an image message to WhatsApp User"
+						}
 					},
 					"response": []
 				}
@@ -1493,8 +1467,7 @@
 									"description": "Session name to send"
 								}
 							]
-						},
-						"description": "Inicializa a sessão"
+						}
 					},
 					"response": []
 				},
@@ -1557,8 +1530,7 @@
 									"description": "Session name to send"
 								}
 							]
-						},
-						"description": "Inicializa a sessão"
+						}
 					},
 					"response": []
 				},
@@ -1626,8 +1598,7 @@
 									"description": "Session name to send"
 								}
 							]
-						},
-						"description": "Inicializa a sessão"
+						}
 					},
 					"response": []
 				},
@@ -1690,8 +1661,7 @@
 									"description": "Session name to send"
 								}
 							]
-						},
-						"description": "Inicializa a sessão"
+						}
 					},
 					"response": []
 				}
