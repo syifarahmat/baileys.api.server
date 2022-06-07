@@ -1,6 +1,7 @@
 import { version } from '../package.json';
 import { Command } from 'commander';
 import mergeDeep from 'merge-deep';
+import fs from 'fs';
 const config = {};
 
 const commander = new Command();
@@ -30,6 +31,9 @@ commander
 
 let options = commander.opts();
 options = mergeDeep({}, config, options);
+if (!fs.existsSync(options.sessionDirectory)) {
+  fs.mkdirSync(options.sessionDirectory, { recursive: true });
+}
 module.exports = {
   ...options,
 };
