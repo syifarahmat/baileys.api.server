@@ -10,5 +10,6 @@ router.post('/onWhatsApp', verifyToken, verifyConnection, ChatController.onWhats
 router.post('/onWhatsApp', verifyToken, verifyConnection, ChatController.onWhatsApp);
 router.post('/profilePictureUrl', verifyToken, verifyConnection, ChatController.profilePictureUrl);
 router.post('/fetchStatus', verifyToken, verifyConnection, ChatController.fetchStatus);
+router.post('/presenceSubscribe', verifyToken, verifyConnection, ChatController.presenceSubscribe);
 
 exports.chat = router;

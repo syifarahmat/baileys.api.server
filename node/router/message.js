@@ -11,13 +11,13 @@ const upload = multer({
 const router = new Router({ mergeParams: true });
 
 router.post('/sendText', verifyToken, verifyConnection, MessageController.sendText);
-router.post('/sendImage', verifyToken, verifyConnection, upload, MessageController.sendImage);
-router.post('/sendVideo', verifyToken, verifyConnection, upload, MessageController.sendVideo);
-router.post('/sendAudio', verifyToken, verifyConnection, upload, MessageController.sendAudio);
-router.post('/sendDocument', verifyToken, verifyConnection, upload, MessageController.sendDocument);
-router.post('/sendSticker', verifyToken, verifyConnection, upload, MessageController.sendSticker);
+router.post('/sendImage', upload, verifyToken, verifyConnection, MessageController.sendImage);
+router.post('/sendVideo', upload, verifyToken, verifyConnection, MessageController.sendVideo);
+router.post('/sendAudio', upload, verifyToken, verifyConnection, MessageController.sendAudio);
+router.post('/sendDocument', upload, verifyToken, verifyConnection, MessageController.sendDocument);
+router.post('/sendSticker', upload, verifyToken, verifyConnection, MessageController.sendSticker);
 router.post('/sendButton', verifyToken, verifyConnection, MessageController.sendButton);
-router.post('/sendMediaButton', verifyToken, verifyConnection, upload, MessageController.sendMediaButton);
+router.post('/sendMediaButton', upload, verifyToken, verifyConnection, MessageController.sendMediaButton);
 router.post('/sendList', verifyToken, verifyConnection, MessageController.sendList);
 router.post('/sendContact', verifyToken, verifyConnection, MessageController.sendContact);
 router.post('/forward', verifyToken, verifyConnection, MessageController.forward);

@@ -15,6 +15,7 @@ commander
   .option('-an, --applicationName <value>', 'Define application name', 'WhatsApp.Bot')
   .option('-ll, --logLevel <value>', 'Define log level', 'debug')
   .option('-lp, --logPretty <value>', 'Define log pretty print', true)
+  .option('-qr, --printQRInTerminal <value>', 'Define print qrcode in terminal', true)
   .option('-lc, --logColorize <value>', 'Define log colorize print', true)
   .option('-lmf, --logMessageFormat <value>', 'Define log message format', false)
   .option('-ltm, --logTranslateTime <value>', 'Define log translate the epoch time value into a human readable date and time string', true)
@@ -27,12 +28,23 @@ commander
   .option('-wad, --mediaAutoDownload <value>', 'Define automatically downloads files to upload to the webhook', true)
   .option('-wrm, --webhookReadMessage <value>', 'Define to marks messages as read when the webhook returns ok', true)
   .option('-suc, --sendUnreadCount <value>', 'Define to load message count from unread chats', 100)
-  .option('-c, --config <value>', 'Read config from json file or json string')
+  .option('-c, --config <value>', 'Read config from json file or json string', {})
 
 let options = commander.opts();
 options = mergeDeep({}, config, options);
 if (!fs.existsSync(options.sessionDirectory)) {
   fs.mkdirSync(options.sessionDirectory, { recursive: true });
+}
+if (fs.existsSync(options.config)) {
+  try {
+    const json = JSON.parse(fs.readFileSync(options.config));
+    options = mergeDeep(options, json);
+  } catch (e) {}
+} else {
+  try {
+    const json = JSON.parse(options.config);
+    options = mergeDeep(options, json);
+  } catch (e) {}
 }
 module.exports = {
   ...options,

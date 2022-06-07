@@ -530,7 +530,7 @@
 								},
 								{
 									"key": "message",
-									"value": "Hai https://syifarahmat.github.io",
+									"value": "Hai http",
 									"type": "text"
 								}
 							]
@@ -554,63 +554,58 @@
 							]
 						}
 					},
-					"response": []
-				},
-				{
-					"name": "Send Text Json",
-					"event": [
+					"response": [
 						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									""
+							"name": "Json",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
 								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "toJid",
+											"value": "6282266331136",
+											"description": "Jid to send message, allow multiple exp.: 6282266331133, 6282266331134",
+											"type": "text"
+										},
+										{
+											"key": "message",
+											"value": "Hai http",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/:session/message/sendText",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										":session",
+										"message",
+										"sendText"
+									],
+									"variable": [
+										{
+											"key": "session",
+											"value": "{{session}}",
+											"description": "Session name to send"
+										}
+									]
 								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"toJid\": \"6282266331136\",\n    \"message\": \"Haiiii....\"\n}"
-						},
-						"url": {
-							"raw": "{{baseUrl}}/:session/message/sendText",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								":session",
-								"message",
-								"sendText"
-							],
-							"variable": [
-								{
-									"key": "session",
-									"value": "{{session}}",
-									"description": "Session name to send"
-								}
-							]
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
 						}
-					},
-					"response": []
+					]
 				},
 				{
 					"name": "Send Image",
@@ -632,22 +627,22 @@
 							"formdata": [
 								{
 									"key": "toJid",
-									"value": "",
+									"value": "6282266331136",
 									"type": "text"
 								},
 								{
 									"key": "file",
 									"type": "file",
-									"src": []
+									"src": "/C:/Users/syifarahmat.id/Desktop/unnamed.jpg"
 								},
 								{
 									"key": "caption",
-									"value": "",
+									"value": "X",
 									"type": "text"
 								},
 								{
 									"key": "fileName",
-									"value": "",
+									"value": "Xxx",
 									"type": "text"
 								}
 							]
@@ -669,99 +664,155 @@
 									"description": "Session name to send"
 								}
 							]
-						}
+						},
+						"description": "Send Image,"
 					},
-					"response": []
-				},
-				{
-					"name": "Send Image Json",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
+					"response": [
+						{
+							"name": "Json",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"toJid\": \"6282266331136\",\r\n    \"path\": \"F:/picture/Amoorea.png\",\r\n    \"caption\": \"FILE COKKK\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/:session/message/sendImage",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										":session",
+										"message",
+										"sendImage"
+									],
+									"variable": [
+										{
+											"key": "session",
+											"value": "{{session}}",
+											"description": "Session name to send"
+										}
+									]
 								}
-							]
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
 						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"toJid\": \"6282266331136\",\r\n    \"path\": \"F:/picture/Amoorea.png\",\r\n    \"caption\": \"FILE COKKK\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+						{
+							"name": "Json Url",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"toJid\": \"6282266331136\",\r\n    \"path\": \"https://lh5.googleusercontent.com/p/AF1QipPx5T1UcEt7ENdxPFKoAJvwmOPlRPgaPmzBXXHf=w90-h90-n-k-no\",\r\n    \"caption\": \"FILE COKKK\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/:session/message/sendImage",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										":session",
+										"message",
+										"sendImage"
+									],
+									"variable": [
+										{
+											"key": "session",
+											"value": "{{session}}",
+											"description": "Session name to send"
+										}
+									]
 								}
-							}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
 						},
-						"url": {
-							"raw": "{{baseUrl}}/:session/message/sendImage",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								":session",
-								"message",
-								"sendImage"
-							],
-							"variable": [
-								{
-									"key": "session",
-									"value": "{{session}}",
-									"description": "Session name to send"
+						{
+							"name": "Multiple Jid",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "toJid",
+											"value": "6282266331136,6282266331137",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/syifarahmat.id/Desktop/unnamed.jpg"
+										},
+										{
+											"key": "caption",
+											"value": "X",
+											"type": "text"
+										},
+										{
+											"key": "fileName",
+											"value": "Xxx",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/:session/message/sendImage",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										":session",
+										"message",
+										"sendImage"
+									],
+									"variable": [
+										{
+											"key": "session",
+											"value": "{{session}}",
+											"description": "Session name to send"
+										}
+									]
 								}
-							]
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
 						}
-					},
-					"response": []
-				},
-				{
-					"name": "Send Image Url",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"toJid\": \"6282266331136\",\r\n    \"path\": \"https://lh5.googleusercontent.com/p/AF1QipPx5T1UcEt7ENdxPFKoAJvwmOPlRPgaPmzBXXHf=w90-h90-n-k-no\",\r\n    \"caption\": \"FILE COKKK\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/:session/message/sendImage",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								":session",
-								"message",
-								"sendImage"
-							],
-							"variable": [
-								{
-									"key": "session",
-									"value": "{{session}}",
-									"description": "Session name to send"
-								}
-							]
-						}
-					},
-					"response": []
+					]
 				},
 				{
 					"name": "Send Video",
@@ -817,7 +868,53 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Json",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"toJid\": \"6282266331136\",\r\n    \"path\": \"F:/picture/Amoorea.mp4\",\r\n    \"caption\": \"FILE COKKK\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/:session/message/sendVideo",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										":session",
+										"message",
+										"sendVideo"
+									],
+									"variable": [
+										{
+											"key": "session",
+											"value": "{{session}}",
+											"description": "Session name to send"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
 				},
 				{
 					"name": "Send Audio",
@@ -890,7 +987,7 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": []
+									"src": "/F:/project/Node/baileysserver/session/syifarahmat.id/stickerMessage/95DB979BB8B6E15B9B752F339F90DCDF.webp"
 								}
 							]
 						},
@@ -913,52 +1010,53 @@
 							]
 						}
 					},
-					"response": []
-				},
-				{
-					"name": "Send Sticker Json",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
+					"response": [
+						{
+							"name": "Json",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"toJid\": \"6282266331136\",\r\n    \"path\": \"F:/project/Node/baileysserver/session/syifarahmat.id/stickerMessage/95DB979BB8B6E15B9B752F339F90DCDF.webp\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/:session/message/sendSticker",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										":session",
+										"message",
+										"sendSticker"
+									],
+									"variable": [
+										{
+											"key": "session",
+											"value": "{{session}}",
+											"description": "Session name to send"
+										}
+									]
 								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"toJid\": \"6282266331136\",\r\n    \"path\": \"F:/project/Node/baileysserver/session/syifarahmat.id/stickerMessage/3EB03FBD573CE1011C6B.webp\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/:session/message/sendSticker",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								":session",
-								"message",
-								"sendSticker"
-							],
-							"variable": [
-								{
-									"key": "session",
-									"value": "{{session}}",
-									"description": "Session name to send"
-								}
-							]
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
 						}
-					},
-					"response": []
+					]
 				},
 				{
 					"name": "Send Document",
@@ -1176,7 +1274,7 @@
 							"urlencoded": [
 								{
 									"key": "toJid",
-									"value": "6282266331136,6282266331137",
+									"value": "6282266331136",
 									"type": "text"
 								},
 								{
@@ -1653,6 +1751,69 @@
 								":session",
 								"chat",
 								"fetchStatus"
+							],
+							"variable": [
+								{
+									"key": "session",
+									"value": "{{session}}",
+									"description": "Session name to send"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Presence Subscribe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "fromJid",
+									"value": "6282266331137",
+									"description": "Jid to send message, allow multiple exp.: 6282266331133, 6282266331134",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/:session/chat/presenceSubscribe",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								":session",
+								"chat",
+								"presenceSubscribe"
 							],
 							"variable": [
 								{

@@ -17,7 +17,7 @@ export const logger = pino(
     name: config.applicationName,
     level: config.logLevel,
   },
-  config.logPretty ? stream : {},
+  config.logPretty ? stream : undefined,
 );
 
 export function expresslogger() {

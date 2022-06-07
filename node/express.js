@@ -7,13 +7,10 @@ import config from './config';
 import { convert } from './mapper/index';
 import { expresslogger, logger } from './util/logger';
 import router from './router';
-import { handler } from './midleware/error';
 import { startAllSession } from './util/functions';
 
 const app = express();
-const http = new createServer(app, (req, res) => {
-  res[expresslogger.startTime] = Date.now();
-});
+const http = new createServer(app);
 const io = new Socket(http, {
   cors: true,
   origins: ['*'],
@@ -47,7 +44,6 @@ app.use((req, res, next) => {
   next();
 });
 app.use('/', router);
-app.use(handler);
 io.on('connection', sock => {
   logger.info(`IO ${sock.id} connect`);
   sock.on('disconnect', () => {

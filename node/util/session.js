@@ -1,4 +1,4 @@
-import makeWASocket, { Browsers, DisconnectReason, downloadContentFromMessage, fetchLatestBaileysVersion, makeInMemoryStore, useMultiFileAuthState } from '@adiwajshing/baileys';
+import makeWASocket, { Browsers, DisconnectReason, downloadContentFromMessage, downloadMediaMessage, fetchLatestBaileysVersion, makeInMemoryStore, useMultiFileAuthState } from '@adiwajshing/baileys';
 import { clientsArray } from './variable';
 import path from 'path';
 import { callWebHook, sendUnread } from './functions';
@@ -21,18 +21,22 @@ export default class SessionUtil {
   }
   async downloadMediaMessage(req, session, message, type) {
     const messageType = Object.keys(message.message)[0];
-    const extension = mime.extension(message.message[messageType].mimetype,);
+    const extension = mime.extension(message.message[messageType].mimetype);
     if (fs.existsSync(path.join(req.config.sessionDirectory, session, messageType, `${message.key.id}.${extension}`))) {
       return path.join(req.config.sessionDirectory, session, messageType, `${message.key.id}.${extension}`);
     }
-    const stream = await downloadContentFromMessage(message.message[messageType], type);
-    let buffer = Buffer.from([]);
-    for await(const chunk of stream) {
-      buffer = Buffer.concat([buffer, chunk]);
-    }
-    const writeFileWait = (path, data,) => {
-      return new Promise((resolve, reject,) => {
-        fs.writeFile(path, data, (error) => {
+    const buffer = await downloadMediaMessage(
+      message,
+      type,
+      {},
+      {
+        logger: req.logger,
+        reuploadRequest: req.client.updateMediaMessage,
+      },
+    );
+    const writeFileWait = (path, data) => {
+      return new Promise((resolve, reject) => {
+        fs.writeFile(path, data, error => {
           if (error) reject(error);
           else resolve(path);
         });
@@ -56,7 +60,7 @@ export default class SessionUtil {
     let sockect = makeWASocket({
       version,
       logger: req.logger.child({}),
-      printQRInTerminal: true,
+      printQRInTerminal: client.config.printQRInTerminal ? client.config.printQRInTerminal : req.config.printQRInTerminal,
       auth: state,
       msgRetryCounterMap: {},
       browser: Browsers.macOS(req.config.browserName),
@@ -169,19 +173,19 @@ export default class SessionUtil {
       if (['stickerMessage', 'imageMessage', 'videoMessage', 'audioMessage', 'documentMessage'].includes(messageType) && req.config.mediaAutoDownload) {
         if (Number(data.messages[0].message[messageType].fileLength) < 10485760) {
           if (messageType === 'stickerMessage') {
-            await this.downloadMediaMessage(req, session, data.messages[0], 'image');
+            await this.downloadMediaMessage(req, session, data.messages[0], 'buffer');
           }
           if (messageType === 'imageMessage') {
-            await this.downloadMediaMessage(req, session, data.messages[0], 'image');
+            await this.downloadMediaMessage(req, session, data.messages[0], 'buffer');
           }
           if (messageType === 'videoMessage') {
-            await this.downloadMediaMessage(req, session, data.messages[0], 'video');
+            await this.downloadMediaMessage(req, session, data.messages[0], 'buffer');
           }
           if (messageType === 'audioMessage') {
-            await this.downloadMediaMessage(req, session, data.messages[0], 'audio');
+            await this.downloadMediaMessage(req, session, data.messages[0], 'buffer');
           }
           if (messageType === 'documentMessage') {
-            await this.downloadMediaMessage(req, session, data.messages[0], 'document');
+            await this.downloadMediaMessage(req, session, data.messages[0], 'buffer');
           }
         }
       }

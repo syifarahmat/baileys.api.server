@@ -3,7 +3,7 @@ import { jidToArray, verifyJid } from '../util/functions';
 export default async function verifyConnection(req, res, next) {
   try {
     if (req.client) {
-      let array = jidToArray(req.body.toJid ? req.body.toJid : req.body.fromJid ? req.body.fromJid : [], req.body.isGroup);
+      let array = jidToArray(req.body.toJid ? req.body.toJid : req.body.fromJid ? req.body.fromJid : []);
       for (const jid of array) {
         const index = array.indexOf(jid);
         if (!(await verifyJid(req.client, jid))) {

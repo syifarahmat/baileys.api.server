@@ -82,3 +82,24 @@ export async function fetchStatus(req, res) {
     });
   }
 }
+export async function presenceSubscribe(req, res) {
+  const { fromJid } = req.body;
+  try {
+    let results = [];
+    for (const jid of fromJid) {
+      const result = await req.client.presenceSubscribe(jid);
+      results.push(result ? result : {});
+    }
+    if (results.length === 0) {
+      return res.status(400).json({
+        error: `No presence subscribe`,
+      });
+    }
+    res.status(201).json({ response: results });
+  } catch (e) {
+    req.logger.error(e);
+    res.status(500).json({
+      error: `Error presence subscribe, ${e.message}`,
+    });
+  }
+}
