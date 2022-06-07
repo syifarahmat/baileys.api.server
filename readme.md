@@ -21,5 +21,5 @@ Baileys Api Server inspired by ease of use [WPPConnect Server](https://github.co
 - Send and Receive all Baileys message Features
 
 ## Sorry
-I didn't include any documentation, but you can use a [Postman .json](https://github.com/syifarahmat/baileys.api.server/postman.json) that I have provided
+I didn't include any documentation, but you can use a [Postman .json](https://github.com/syifarahmat/baileys.api.server/blob/main/postman.json) that I have provided
 You can use [this minimal webhook](https://github.com/syifarahmat/webhook) to try it.
