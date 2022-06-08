@@ -1,4 +1,5 @@
 **/node_modules/
 local_modules/
 session/
+dist/
 .idea/
