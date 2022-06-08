@@ -8,7 +8,12 @@
   "license": "private",
   "private": true,
   "scripts": {
-    "start": "nodemon -w node --exec \"babel-node node/index.js\""
+    "build:dist": "rimraf dist && babel node -s -D -d dist/development",
+    "build:obfuscator": "javascript-obfuscator dist/development --output dist/production --string-array-encoding rc4 --control-flow-flattening true --numbers-to-expressions true --split-strings true --disable-console-output false",
+    "build": "yarn build:dist && yarn build:obfuscator",
+    "start:nodemon": "nodemon -w node --exec \"babel-node node/index.js\"",
+    "start:development": "node dist/development/index.js",
+    "start": "node dist/production/index.js"
   },
   "dependencies": {
     "@adiwajshing/baileys": "file:local_modules/adiwajshing/baileys.release",
@@ -33,7 +38,6 @@
     "qrcode": "^1.5.0",
     "qrcode-terminal": "^0.12.0",
     "sharp": "^0.30.6",
-    "socket.io": "^4.5.1",
     "uuid": "^8.3.2",
     "webp-converter": "^2.3.3"
   },
@@ -51,6 +55,7 @@
     "eslint": "^8.16.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "javascript-obfuscator": "^4.0.0",
     "prettier": "^2.6.2",
     "pretty-quick": "^3.1.3",
     "rimraf": "^3.0.2"

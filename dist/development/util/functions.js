@@ -1,21 +1,21 @@
-import api from 'axios';
-import fs from 'fs';
-import { promisify } from 'util';
-import { convert } from '../mapper/index';
-import path from 'path';
+"use strict";var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");Object.defineProperty(exports, "__esModule", { value: true });exports.callWebHook = callWebHook;exports.getAllSession = getAllSession;exports.getIPAddress = getIPAddress;exports.getJid = getJid;exports.jidToArray = jidToArray;exports.markReadMessages = markReadMessages;exports.sendUnread = sendUnread;exports.setMaxListners = setMaxListners;exports.startAllSession = startAllSession;exports.stringToBoolean = stringToBoolean;exports.unlinkAsync = void 0;exports.verifyJid = verifyJid;var _axios = _interopRequireDefault(require("axios"));
+var _fs = _interopRequireDefault(require("fs"));
+var _util = require("util");
+var _index = require("../mapper/index");
+var _path = _interopRequireDefault(require("path"));
 
-export async function getAllSession(req) {
+async function getAllSession(req) {
   let canStart = [];
-  const sessions = fs.readdirSync(path.join(req.config.sessionDirectory));
-  sessions.map(file => {
-    if (fs.existsSync(path.join(req.config.sessionDirectory, file, 'config.json'))) {
-      let config = fs.readFileSync(path.join(req.config.sessionDirectory, file, 'config.json'));
+  const sessions = _fs.default.readdirSync(_path.default.join(req.config.sessionDirectory));
+  sessions.map((file) => {
+    if (_fs.default.existsSync(_path.default.join(req.config.sessionDirectory, file, 'config.json'))) {
+      let config = _fs.default.readFileSync(_path.default.join(req.config.sessionDirectory, file, 'config.json'));
       canStart.push({ session: file, config: JSON.parse(config) });
     }
   });
   return canStart;
 }
-export function jidToArray(toJid) {
+function jidToArray(toJid) {
   let array = [];
   if (Array.isArray(toJid)) {
     for (let jid of toJid) {
@@ -35,44 +35,44 @@ export function jidToArray(toJid) {
   }
   return array;
 }
-export async function callWebHook(client, req, event, data) {
+async function callWebHook(client, req, event, data) {
   const webhook = client?.config.webhookUrl || req.config.webhookUrl || false;
   if (webhook) {
     try {
       data = Object.assign({ event: event, session: client.session }, data);
-      if (req.config.mapperEnable) data = await convert(req.config.mapperPrefix, data);
-      api
-        .post(webhook, data)
-        .then(async () => {
-          try {
-            const events = ['messages.upsert'];
-            if (events.includes(event) && data.data.type === 'notify' && req.config.webhookReadMessage) {
-              for (const message of data.data.messages ? data.data.messages : []) {
-                if (message.key && !message.key.fromMe) {
-                  await markReadMessages(message.key.remoteJid, client, [message]);
-                }
+      if (req.config.mapperEnable) data = await (0, _index.convert)(req.config.mapperPrefix, data);
+      _axios.default.
+      post(webhook, data).
+      then(async () => {
+        try {
+          const events = ['messages.upsert'];
+          if (events.includes(event) && data.data.type === 'notify' && req.config.webhookReadMessage) {
+            for (const message of data.data.messages ? data.data.messages : []) {
+              if (message.key && !message.key.fromMe) {
+                await markReadMessages(message.key.remoteJid, client, [message]);
               }
             }
-          } catch (e) {
-            req.logger.error(e);
           }
-        })
-        .catch(e => {
-          req.logger.warn('Error calling webhook', e);
-        });
+        } catch (e) {
+          req.logger.error(e);
+        }
+      }).
+      catch((e) => {
+        req.logger.warn('Error calling webhook', e);
+      });
     } catch (e) {
       req.logger.error(e);
     }
   }
 }
-export async function startAllSession(config, logger) {
+async function startAllSession(config, logger) {
   try {
-    await api.get(`http://${getIPAddress()}:${config.port}/api/session/startup/${config.secretKey}`);
+    await _axios.default.get(`http://${getIPAddress()}:${config.port}/api/session/startup/${config.secretKey}`);
   } catch (e) {
     logger.error(e);
   }
 }
-export async function sendUnread(client, req) {
+async function sendUnread(client, req) {
   req.logger.info(`Start sending unread messages from session ${client.session}`);
   try {
     for (const chat of await client.store.chats.all()) {
@@ -83,9 +83,9 @@ export async function sendUnread(client, req) {
             await callWebHook(client, req, 'messages.upsert', {
               data: {
                 messages: [message],
-                type: 'notify',
-              },
-            });
+                type: 'notify' } });
+
+
           }
         }
       }
@@ -95,7 +95,7 @@ export async function sendUnread(client, req) {
     req.logger.error(e);
   }
 }
-export async function markReadMessages(jid, client, messages) {
+async function markReadMessages(jid, client, messages) {
   for (const message of messages ? messages : []) {
     if (message.key && !message.key.fromMe) {
       await client.sendReadReceipt(message.key.remoteJid, message.key.participant, [message.key.id]);
@@ -104,11 +104,11 @@ export async function markReadMessages(jid, client, messages) {
     }
   }
 }
-export function getJid(jid) {
+function getJid(jid) {
   if (jid.includes('@g.us') || jid.includes('@c.us') || jid.includes('@s.whatsapp.net')) return jid.trim();
   return jid.includes('-') || jid.split('@')[0].length > 13 ? `${jid}@g.us`.trim() : `${jid}@s.whatsapp.net`.trim();
 }
-export async function verifyJid(client, jid) {
+async function verifyJid(client, jid) {
   if (jid.includes('@g.us')) {
     return true;
   }
@@ -118,10 +118,10 @@ export async function verifyJid(client, jid) {
   }
   throw new Error(`Jid ${jid.trim()} not registered on WhatsApp`);
 }
-export function stringToBoolean(s) {
+function stringToBoolean(s) {
   return /^(true|1)$/i.test(s);
 }
-export function getIPAddress() {
+function getIPAddress() {
   var interfaces = require('os').networkInterfaces();
   for (var name in interfaces) {
     var current = interfaces[name];
@@ -132,10 +132,11 @@ export function getIPAddress() {
   }
   return '127.0.0.1';
 }
-export function setMaxListners(config) {
+function setMaxListners(config) {
   if (config && Number.isInteger(config.maxListeners)) {
     process.setMaxListeners(config.maxListeners);
   }
 }
 
-export let unlinkAsync = promisify(fs.unlink);
+let unlinkAsync = (0, _util.promisify)(_fs.default.unlink);exports.unlinkAsync = unlinkAsync;
+//# sourceMappingURL=functions.js.map

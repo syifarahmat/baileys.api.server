@@ -4,6 +4,7 @@ import path from 'path';
 import { callWebHook, sendUnread } from './functions';
 import fs from 'fs';
 import * as mime from 'mime-types';
+import { logger } from './logger';
 
 export default class SessionUtil {
   getClient(session) {
@@ -56,7 +57,7 @@ export default class SessionUtil {
     Object.assign(client, { status: 'initializing', config: req.body });
     const { state, saveCreds } = await useMultiFileAuthState(path.join(req.config.sessionDirectory, session));
     const { version, isLatest } = await fetchLatestBaileysVersion();
-    console.log(`Using WhatsApp v${version.join('.')}${isLatest ? ', lates version' : ''}`);
+    logger.info(`Using WhatsApp v${version.join('.')}${isLatest ? ', lates version' : ''}`);
     let sockect = makeWASocket({
       version,
       logger: req.logger.child({}),

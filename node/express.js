@@ -1,21 +1,18 @@
 import cors from 'cors';
 import express from 'express';
 import { createServer } from 'http';
-import { Server as Socket } from 'socket.io';
 import boolParser from 'express-query-boolean';
 import config from './config';
 import { convert } from './mapper/index';
 import { expresslogger, logger } from './util/logger';
 import router from './router';
 import { getIPAddress, setMaxListners, startAllSession } from './util/functions';
+import * as exception from 'express-exception-handler';
 
+exception.handle();
 setMaxListners(config);
 const app = express();
 const http = new createServer(app);
-const io = new Socket(http, {
-  cors: true,
-  origins: ['*'],
-});
 
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
@@ -25,7 +22,6 @@ app.use(expresslogger());
 app.use((req, res, next) => {
   req.config = config;
   req.logger = logger;
-  req.io = io;
   var old = res.send;
   res.send = async data => {
     const content = req.headers['content-type'];
@@ -45,15 +41,11 @@ app.use((req, res, next) => {
   next();
 });
 app.use('/', router);
-io.on('connection', sock => {
-  logger.info(`IO ${sock.id} connect`);
-  sock.on('disconnect', () => {
-    logger.info(`IO ${sock.id} disconnect`);
-  });
-});
+app.use('/static', express.static(config.sessionDirectory));
 export const server = http.listen(config.port, () => {
-  console.log(`Server is running on port ${config.port}`);
-  console.log(`Visit http://localhost:${config.port}/api/ping, http://${getIPAddress()}:${config.port}/api/ping`);
+  logger.info(`Server is running on port ${config.port}`);
+  logger.info(`Visit http://localhost:${config.port}/api/ping, http://${getIPAddress()}:${config.port}/api/ping`);
+  logger.debug(config);
   if (config.startAllSession) {
     startAllSession(config, logger);
   }
