@@ -1,0 +1,9 @@
+{
+  "stringArrayEncoding": ["rc4"],
+  "controlFlowFlattening": true,
+  "numbersToExpressions": true,
+  "splitStrings": true,
+  "disableConsoleOutput": false,
+  "sourceMap": true,
+  "target": "node"
+}

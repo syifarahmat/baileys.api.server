@@ -9,8 +9,9 @@
   "private": true,
   "scripts": {
     "build:dist": "rimraf dist && babel node -s -D -d dist/development",
-    "build:obfuscator": "javascript-obfuscator dist/development --output dist/production --string-array-encoding rc4 --control-flow-flattening true --numbers-to-expressions true --split-strings true --disable-console-output false",
-    "build": "yarn build:dist && yarn build:obfuscator",
+    "build:obfuscator": "javascript-obfuscator dist/development --output dist/production --config obfuscator.json",
+    "build": "yarn build:dist && yarn build:obfuscator && yarn copy",
+    "copy": "copyfiles package.json yarn.lock postman.json local_modules/**/*.release/** dist/development && copyfiles package.json yarn.lock postman.json local_modules/**/*.release/** dist/production",
     "start:nodemon": "nodemon -w node --exec \"babel-node node/index.js\"",
     "start:development": "node dist/development/index.js",
     "start": "node dist/production/index.js"
@@ -52,6 +53,7 @@
     "@commitlint/cli": "^17.0.2",
     "@commitlint/config-conventional": "^17.0.2",
     "@commitlint/cz-commitlint": "^17.0.0",
+    "copyfiles": "^2.4.1",
     "eslint": "^8.16.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
