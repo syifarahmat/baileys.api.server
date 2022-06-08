@@ -10,7 +10,6 @@ commander
   .version(version, '-v, --version',)
   .usage('[OPTIONS]...',)
   .option('-sk, --secretKey <value>', 'Define secret key to genereta access token', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',)
-  .option('-h, --host <value>', 'Define host', 'http://127.0.0.1',)
   .option('-p, --port <value>', 'Define listing port', 3333,)
   .option('-an, --applicationName <value>', 'Define application name', 'WhatsApp.Bot')
   .option('-ll, --logLevel <value>', 'Define log level', 'debug')

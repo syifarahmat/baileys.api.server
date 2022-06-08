@@ -388,3 +388,16 @@ export async function loadMessage(req, res) {
     });
   }
 }
+export async function sendReadReceipt(req, res) {
+  const { message } = req.body;
+  try {
+    let key = message.key ? message.key : message;
+    await req.client.sendReadReceipt(key.remoteJid, key.participant, [key.id]);
+    res.status(201).json({ success: `Message successfull receipt`, message: key });
+  } catch (e) {
+    req.logger.error(e);
+    res.status(500).json({
+      error: `Error receipt message, ${e.message}`,
+    });
+  }
+}

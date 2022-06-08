@@ -67,7 +67,7 @@ export async function callWebHook(client, req, event, data) {
 }
 export async function startAllSession(config, logger) {
   try {
-    await api.get(`${config.host}:${config.port}/api/session/startup/${config.secretKey}`);
+    await api.get(`http://${getIPAddress()}:${config.port}/api/session/startup/${config.secretKey}`);
   } catch (e) {
     logger.error(e);
   }
@@ -79,7 +79,7 @@ export async function sendUnread(client, req) {
       if (chat.unreadCount > 0) {
         for (const message of await client.store.loadMessages(chat.id, req.config.sendUnreadCount)) {
           if (!message.key.fromMe && !(message.status === 4 || message.status === 'READ')) {
-            req.logger.info(message);
+            req.logger.debug(`Send message id ${message.key.id}, fromMe ${message.key.fromMe}, status ${message.status} to webhook`);
             await callWebHook(client, req, 'messages.upsert', {
               data: {
                 messages: [message],
@@ -130,11 +130,11 @@ export function getIPAddress() {
       if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) return alias.address;
     }
   }
-  return '0.0.0.0';
+  return '127.0.0.1';
 }
-export function setMaxListners(serveroptions) {
-  if (serveroptions && Number.isInteger(serveroptions.maxListeners)) {
-    process.setMaxListeners(serveroptions.maxListeners);
+export function setMaxListners(config) {
+  if (config && Number.isInteger(config.maxListeners)) {
+    process.setMaxListeners(config.maxListeners);
   }
 }
 

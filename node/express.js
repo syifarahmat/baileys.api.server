@@ -7,8 +7,9 @@ import config from './config';
 import { convert } from './mapper/index';
 import { expresslogger, logger } from './util/logger';
 import router from './router';
-import { startAllSession } from './util/functions';
+import { getIPAddress, setMaxListners, startAllSession } from './util/functions';
 
+setMaxListners(config);
 const app = express();
 const http = new createServer(app);
 const io = new Socket(http, {
@@ -52,7 +53,7 @@ io.on('connection', sock => {
 });
 export const server = http.listen(config.port, () => {
   console.log(`Server is running on port ${config.port}`);
-  console.log(`Visit ${config.host}:${config.port}`);
+  console.log(`Visit http://localhost:${config.port}/api/ping, http://${getIPAddress()}:${config.port}/api/ping`);
   if (config.startAllSession) {
     startAllSession(config, logger);
   }

@@ -24,5 +24,6 @@ router.post('/forward', verifyToken, verifyConnection, MessageController.forward
 router.post('/reaction', verifyToken, verifyConnection, MessageController.reaction);
 router.post('/loadMessages', verifyToken, verifyConnection, MessageController.loadMessages);
 router.post('/loadMessage', verifyToken, verifyConnection, MessageController.loadMessage);
+router.post('/sendReadReceipt', verifyToken, verifyConnection, MessageController.sendReadReceipt);
 
 exports.message = router;
