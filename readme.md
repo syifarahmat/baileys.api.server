@@ -1,7 +1,7 @@
 # Baileys Api Server
 ## _Easy Baileys Management_
 
-Baileys Api Server inspired by ease of use [WPPConnect Server](https://github.com/wppconnect-team/wppconnect-server) by @edgardmessias
+Baileys Api Server inspired by ease of use [WPPConnect Server](https://github.com/wppconnect-team/wppconnect-server) by [Edgard Lorraine Messias](https://github.com/edgardmessias)
 
 - Multiple sessions
 - Generate token/ Api Key

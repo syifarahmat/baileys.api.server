@@ -1,7 +1,7 @@
 # Baileys Api Server
 ## _Manajemen Baileys Dengan Mudah_
 
-Baileys Api Server terinspirasi dari kemudahan penggunaan [WPPConnect Server](https://github.com/wppconnect-team/wppconnect-server) oleh @edgardmessias
+Baileys Api Server terinspirasi dari kemudahan penggunaan [WPPConnect Server](https://github.com/wppconnect-team/wppconnect-server) oleh [Edgard Lorraine Messias](https://github.com/edgardmessias)
 
 - Banyak sesi
 - Generate token/ Api Key
