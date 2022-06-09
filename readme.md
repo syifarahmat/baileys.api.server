@@ -1,7 +1,7 @@
 # Baileys Api Server
 ## _Easy Baileys Management_
 
-Baileys Api Server inspired by ease of use [WPPConnect Server](https://github.com/wppconnect-team/wppconnect-server) by [Edgard Lorraine Messias](https://github.com/edgardmessias)
+Baileys Api Server inspired by ease of use [WPPConnect Server](https://github.com/wppconnect-team/wppconnect-server) by @edgardmessias
 
 - Multiple sessions
 - Generate token/ Api Key
@@ -23,3 +23,13 @@ Baileys Api Server inspired by ease of use [WPPConnect Server](https://github.co
 ## Sorry
 I didn't include any documentation, but you can use a [Postman .json](https://github.com/syifarahmat/baileys.api.server/blob/main/postman.json) that I have provided
 You can use [this minimal webhook](https://github.com/syifarahmat/webhook) to try it.
+
+## Use
+
+    yarn install
+    yarn start:nodemon --port 5959 
+    yarn start:nodemon --secretKey AKUANAKINDONESIA
+    yarn start:nodemon --webhookUrl https://syifarahmat.github.io/
+
+    yarn build
+    

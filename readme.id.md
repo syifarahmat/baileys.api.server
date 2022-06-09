@@ -1,7 +1,7 @@
 # Baileys Api Server
 ## _Manajemen Baileys Dengan Mudah_
 
-Baileys Api Server terinspirasi dari kemudahan penggunaan [WPPConnect Server](https://github.com/wppconnect-team/wppconnect-server) dari [Edgard Lorraine Messias](https://github.com/edgardmessias)
+Baileys Api Server terinspirasi dari kemudahan penggunaan [WPPConnect Server](https://github.com/wppconnect-team/wppconnect-server) oleh @edgardmessias
 
 - Banyak sesi
 - Generate token/ Api Key
@@ -23,3 +23,13 @@ Baileys Api Server terinspirasi dari kemudahan penggunaan [WPPConnect Server](ht
 ## Maaf
 Saya tidak menyertakan dokumentasi, namun anda dapat menggunakan [Postman .json](https://github.com/syifarahmat/baileys.api.server/blob/main/postman.json) yang sudah saya sediakan
 Kamu dapat menggunakan [webhook minimal ini](https://github.com/syifarahmat/webhook) untuk mencobanya.
+
+## Penggunaan
+
+    yarn install
+    yarn start:nodemon --port 5959 
+    yarn start:nodemon --secretKey AKUANAKINDONESIA
+    yarn start:nodemon --webhookUrl https://syifarahmat.github.io/
+
+    yarn build
+    
